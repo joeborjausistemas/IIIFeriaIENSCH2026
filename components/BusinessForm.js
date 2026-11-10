@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { slugify } from '@/lib/utils';
+import { SEDES, GRADOS } from '@/lib/config';
 
 const FIELDS = [
   ['name', 'Nombre del emprendimiento', 'text', true],
@@ -76,6 +77,9 @@ export default function BusinessForm({ user, business, onDone, onCancel }) {
       const row = {};
       FIELDS.filter(([k]) => !LISTS.includes(k)).forEach(([k]) => { row[k] = (v[k] ?? '').toString().trim() || null; });
       row.stage = v.stage || null;
+      row.student_name = (v.student_name || '').trim() || null;
+      row.student_grade = v.student_grade || null;
+      row.campus = v.campus || null;
       row.category_id = v.category_id ? Number(v.category_id) : null;
       row.founded_year = v.founded_year ? Number(v.founded_year) : null;
       row.has_delivery = !!v.has_delivery;
@@ -140,6 +144,15 @@ export default function BusinessForm({ user, business, onDone, onCancel }) {
           <option value="crecimiento">En crecimiento</option><option value="consolidado">Consolidado</option></select></label>
       </fieldset>
 
+      <fieldset className="fs">
+        <legend>Estudiante que representa el emprendimiento</legend>
+        <label>Nombre completo del estudiante<input required maxLength={120} value={v.student_name || ''} onChange={set('student_name')} /></label>
+        <label>Grado<select required value={v.student_grade || ''} onChange={set('student_grade')}>
+          <option value="">Elige el grado</option>{GRADOS.map((g) => <option key={g}>{g}</option>)}</select></label>
+        <label>Sede<select required value={v.campus || ''} onChange={set('campus')}>
+          <option value="">Elige la sede</option>{SEDES.map((s) => <option key={s}>{s}</option>)}</select></label>
+      </fieldset>
+
       {FIELDS.map(([k, label, type, req, full]) => (
         <label key={k} className={full ? 'full' : ''}>{label}
           {type === 'textarea'
@@ -180,7 +193,7 @@ export default function BusinessForm({ user, business, onDone, onCancel }) {
       </fieldset>
 
       {!edit && <label className="check full"><input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-        Autorizo el tratamiento de mis datos y el uso de mi logo e imágenes en el catálogo (Ley 1581 de 2012).</label>}
+        Autorizo, como acudiente o representante legal del estudiante (o como estudiante mayor de edad), el tratamiento de los datos del estudiante y del negocio, y el uso del logo e imágenes en el catálogo (Ley 1581 de 2012).</label>}
       <div className="full" style={{ display: 'flex', gap: 12 }}>
         <button className="btn" disabled={busy}>{busy ? 'Guardando…' : edit ? 'Guardar cambios' : 'Enviar mi negocio'}</button>
         <button type="button" className="btn alt" onClick={onCancel} disabled={busy}>Cancelar</button>

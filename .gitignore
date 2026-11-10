@@ -4,6 +4,7 @@ node_modules
 .DS_Store
 migracion_busqueda.sql
 migracion_v2.sql
+migracion_v3.sql
 schema.sql
 README.md
 Clave SUPABASE.txt

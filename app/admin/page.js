@@ -86,6 +86,7 @@ function Panel({ user }) {
               <div>
                 <b>{b.name}</b><span className="state">{ST[b.status]}</span>
                 <small>{b.categories?.name} · {b.city} · {b.whatsapp || b.phone}</small>
+                <small>Estudiante: {b.student_name || 'sin dato'} · {b.student_grade || '-'} · {b.campus || '-'}</small>
                 <small>{b.video_url ? 'Con video pitch' : 'Sin video pitch'}{b.status === 'rejected' && b.rejection_reason ? ` · Motivo: ${b.rejection_reason}` : ''}</small>
               </div>
               <div className="row" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

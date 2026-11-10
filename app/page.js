@@ -51,7 +51,7 @@ export default function Home() {
     <main className="wrap">
       <section className="hero">
         <div>
-          <h1>Cada idea cuenta, cada talento <mark>brilla</mark></h1>
+          <h1>Cada idea cuenta, cada talento <mark>brilla</mark> <span className="sub">para renacer en comunidad</span></h1>
           <p className="lead">Conoce los emprendimientos de la III Feria del Emprendimiento y Expotecnología 2026. Mira su pitch en video, escríbeles por WhatsApp y apoya a los estudiantes y sus familias.</p>
           <ul className="facts">
             <li>Miércoles 18 de noviembre de 2026{days > 0 && ` · faltan ${days} ${days === 1 ? 'día' : 'días'}`}{days === 0 && ' · ¡es hoy!'}</li>

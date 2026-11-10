@@ -36,6 +36,7 @@ export default async function Ficha({ params }) {
           <h1>{b.name}</h1>
           {b.slogan && <p style={{ fontSize: '1.25rem', marginTop: 10 }}>{b.slogan}</p>}
           {b.description && <p style={{ marginTop: 12 }}>{b.description}</p>}
+          {b.student_name && <p className="stu-line">Lo representa: <b>{b.student_name}</b>{[b.student_grade, b.campus].filter(Boolean).map((x) => ` · ${x}`).join('')}</p>}
         </div>
         {v ? <iframe className="video" src={v} title={`Pitch de ${b.name}`} allowFullScreen loading="lazy" />
           : b.video_url && <a className="btn cobalt" href={b.video_url} target="_blank" rel="noopener">Ver video pitch</a>}

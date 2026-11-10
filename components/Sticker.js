@@ -12,6 +12,7 @@ export default function Sticker({ b }) {
       <h3>{b.name}</h3>
       {b.categories?.name && <span className="cat">{b.categories.name}{b.city ? ` en ${b.city}` : ''}</span>}
       <p>{b.slogan || b.description}</p>
+      {b.student_name && <p className="stu"><b>{b.student_name}</b><br />{[b.student_grade, b.campus].filter(Boolean).join(' · ')}</p>}
       <div className="row">
         <Link className="btn sm alt" href={`/emprendimiento/${b.slug}`}>Ver ficha y video</Link>
         {link && <a className="btn sm" href={link} target="_blank" rel="noopener">WhatsApp</a>}
