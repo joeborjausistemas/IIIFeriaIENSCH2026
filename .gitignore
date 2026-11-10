@@ -1,0 +1,9 @@
+node_modules
+.next
+.env*.local
+.DS_Store
+migracion_busqueda.sql
+migracion_v2.sql
+schema.sql
+README.md
+Clave SUPABASE.txt
